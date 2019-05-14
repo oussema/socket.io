@@ -34,8 +34,9 @@ io.on('connection', (socket) => {
     if (addedUser) return;
 
     // we store the username in the socket session for this client
-    socket.username = username;
+    //we added the numUsers to the username to prevent two users have the same pickname to connect with the same account
     ++numUsers;
+    socket.username = username+'-'+numUsers;
     addedUser = true;
     socket.emit('login', {
       numUsers: numUsers
